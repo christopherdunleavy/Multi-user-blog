@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Sign Up</title>
+    <style type="text/css">
+      .label {text-align: left}
+      .error {color: red}
+    </style>
+
+  </head>
+
+  <body>
+    <h2>Signup</h2>
+    <form method="post">
+
+          <label class="label">
+            Username
+            <input type="text" name="username" value="{{username}}">
+          </label>
+
+          <label class="error">
+            {{error_username}}
+          </label>
+
+          <label class="label">
+            Password
+            <input type="password" name="password" value="">
+          </label>
+
+          <label class="error">
+            {{error_password}}
+          </label>
+
+          <label class="label">
+            Verify Password
+            <input type="password" name="verify" value="">
+          </label>
+
+          <label class="error">
+            {{error_verify}}
+          </label>
+
+          <label class="label">
+            Email (optional)
+            <input type="text" name="email" value="{{email}}">
+          </label>
+
+          <label class="error">
+            {{error_email}}
+          </label>
+
+      <input type="submit">
+      <a href="/login">Log In</a>
+    </form>
+  </body>
+
+</html>
+{% endblock %}

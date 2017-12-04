@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render() | safe}}
+  <h2>Comment:</h2>
+  <form method="post">
+    {% if user %}
+      <textarea name="content">{{content}}</textarea>
+      <br>
+      <input type="submit" value="Submit">
+      <br>
+    {% endif %}
+  </form>
+
+  <a href="/blog/{{post.key().id()}}">Cancel</a>
+
+  <div class="post-error">
+    <h3>
+      {{error}}
+    </h3>
+  </div>
+{% endblock %}
+

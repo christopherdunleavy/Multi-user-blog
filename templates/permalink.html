@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render() | safe}}
+
+  {% if user.name == post.author %}
+  <form method="post">
+    <a href="/blog/edit/{{post.key().id()}}">Edit Post</a>
+    <a href="/blog/delete/{{post.key().id()}}">Delete Post</a>
+  </form>
+  {% endif %}
+  {% if user and user.name != post.author %}
+    {% if user.name not in post.likes %}
+      <a href="/blog/likes/{{post.key().id()}}">Like</a>
+    {% else %}
+      <a href="/blog/likes/{{post.key().id()}}">Unlike</a>
+    {% endif %}
+  {% endif %}
+
+  <a href="/blog/newcomment/{{post.key().id()}}">Leave a comment</a>
+
+  <h2>Comments:</h2>
+  {% for comment in post.comments %}
+    <p class="comment_author">{{comment.author}}</p>
+    <p class="comment_content">{{comment.content}}</p>
+    {% if user.name == comment.author %}
+    <form method="post">
+        <a href="/blog/editcomment/{{comment.key().id()}}">Edit Comment</a>
+        <a href="/blog/deletecomment/{{comment.key().id()}}">Delete Comment</a>
+    </form>
+    <br>
+    {% endif %}
+    <br>
+  {% endfor %}
+
+
+{% endblock %}
+
